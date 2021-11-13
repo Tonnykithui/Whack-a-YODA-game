@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.wrapper {
+    height: 500px;
+    width: 600px;
+    background-image: url('images/use.jpg');
+    background-size: contain;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 120px;
+    grid-gap: 2.3em;
+    margin: 70px auto;
+    z-index: 200;
+}
+
+/* .game > div {
+    border: 2px solid blue;
+}
+ */
+.score {
+    font-size: 4em;
+    font-weight: 800;
+    position: absolute;
+    top: 5;
+    left: 50%;
+    transform: translate(-50%);      
+    width: 150px;
+    height: 60px;
+    text-align: center;
+}
+
+.startButton {
+    font-size: 20px;
+    width: 200px;
+    padding: .8em;
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+    outline: none;
+    position: absolute;
+    bottom: -20px;
+    margin: 550px auto 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.box {
+    border: 2px solid blue;
+    position: relative;
+    overflow: hidden;
+}
+
+.box::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    margin: 80px auto;
+    background-image: url('images/sand_PNG44.png');
+    overflow: hidden;
+}
+
+.mole {
+    background-image: url('images/babyyoda.png');
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    margin: 5px auto;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    transition: 0.5s;
+}
+
+.mole.sm{
+    background-size: 60%;
+}
+
+.mole.lg{
+    background-size: 80%;
+}
+
+.box.up .mole{
+    top: 0;
+}
+
+.timeout {
+    font-size: 2em;
+    color: red;
+    font-weight: 800;
+}
