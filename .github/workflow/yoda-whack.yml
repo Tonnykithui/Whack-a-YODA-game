@@ -1,4 +1,3 @@
-
 name: CI/CD Pipeline
 
 on:
@@ -51,3 +50,12 @@ jobs:
           # You can add your script to call the webhook here
           # Example:
           # ./call-webhook.sh
+         - name: executing remote ssh commands using password
+           uses: appleboy/ssh-action@v1.0.0
+           with:
+              host: ${{ secrets.HOST }}
+              username: ${{ secrets.USERNAME }}
+              password: ${{ secrets.PASSWORD }}
+              port: ${{ secrets.PORT }}
+              script: whoami
+              
