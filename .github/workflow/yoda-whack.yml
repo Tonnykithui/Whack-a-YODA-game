@@ -55,5 +55,6 @@ jobs:
            with:
               key: ${{ secrets.CICD_TEST }}
               host: ${{ secrets.IP_ADD }}
+              username: ${{ secrets.IP_USERNAME }}
               script: whoami
               
