@@ -1,0 +1,62 @@
+name: CI/CD Pipeline
+
+on:
+  push
+    # branches:
+      # - main
+      # - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18' # You can specify the Node.js version you need
+
+      - name: Install Dependencies
+        run: npm install # Adjust this if you use a different package manager
+
+      - name: Start Application
+        run: npm start # Modify this to match your start command
+
+      - name: Wait for Application to Start
+        run: sleep 40 # Adjust the sleep time as needed to give your app time to start
+
+      # - name: Check Application Status
+        # run: |
+          # You can add checks here to verify if your app is running correctly.
+          # For example, you can use curl, wget, or another HTTP client to make
+          # requests to your app's endpoints and check for expected responses.
+          # If the checks fail, you can exit with a non-zero code to indicate failure.
+
+          # Example check:
+          # if ! curl -sS http://localhost:3000/health | grep -q "OK"; then
+          #   echo "Application is not running correctly."
+          #   exit 1
+          # fi
+          
+          # Replace the example check with your actual checks.
+
+      # - name: Invoke Webhook (if checks pass)
+        # if: success()
+        # run: |
+          # Only run this step if the previous steps were successful
+          # You can add your script to call the webhook here
+          # Example:
+          # ./call-webhook.sh
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+              key: ${{ secrets.CICD_TEST }}
+              host: ${{ secrets.IP_ADD }}
+              username: ${{ secrets.IP_USERNAME }}
+              script: |
+                  whoami
+                  
+              
